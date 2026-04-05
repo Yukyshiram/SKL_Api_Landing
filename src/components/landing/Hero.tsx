@@ -12,7 +12,7 @@ function GatewayCard() {
     const errHeights = [4,3,5,3,4,3,4,2,3,4,3,3,4,3,3];
     const thrHeights = [18,22,20,26,28,28,28,26,28,28,26,28,28,26,28];
 
-    function makeBars(ref: React.RefObject<HTMLDivElement>, heights: number[]) {
+    function makeBars(ref: React.RefObject<HTMLDivElement | null>, heights: number[]) {
       if (!ref.current) return;
       ref.current.innerHTML = "";
       heights.forEach((h, i) => {

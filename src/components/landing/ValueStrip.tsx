@@ -24,12 +24,7 @@ const cardReveal = {
 
 export default function ValueStrip() {
   return (
-    <section id="value-strip" className="relative isolate overflow-hidden border-b border-white/10 bg-[#05070c]">
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-x-0 top-0 h-16 bg-linear-to-b from-slate-900/16 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-16 bg-linear-to-b from-transparent to-black/24" />
-      </div>
-
+    <section id="value-strip" className="relative isolate overflow-hidden bg-background">
       <div className="mx-auto w-full max-w-7xl px-6 py-8 sm:px-10 lg:px-16">
         <motion.div
           className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
@@ -40,40 +35,40 @@ export default function ValueStrip() {
         >
           <motion.article
             variants={cardReveal}
-            className="rounded-xl border border-white/12 bg-white/3 px-4 py-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-200/25 hover:shadow-[0_12px_30px_-20px_rgba(34,211,238,0.45)]"
+            className="surface-card surface-card-hover px-4 py-5"
           >
-            <h3 className="text-sm font-semibold tracking-[-0.01em] text-slate-100">Modular architecture</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-300/85">
+            <h3 className="text-sm font-semibold tracking-[-0.01em] text-foreground">Modular architecture</h3>
+            <p className="mt-2 text-sm leading-6 text-foreground-secondary">
               Decoupled domains that let product and platform evolve without team friction.
             </p>
           </motion.article>
 
           <motion.article
             variants={cardReveal}
-            className="rounded-xl border border-white/12 bg-white/3 px-4 py-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-200/25 hover:shadow-[0_12px_30px_-20px_rgba(34,211,238,0.45)]"
+            className="surface-card surface-card-hover px-4 py-5"
           >
-            <h3 className="text-sm font-semibold tracking-[-0.01em] text-slate-100">Developer-first</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-300/85">
+            <h3 className="text-sm font-semibold tracking-[-0.01em] text-foreground">Developer-first</h3>
+            <p className="mt-2 text-sm leading-6 text-foreground-secondary">
               Clear contracts, predictable DX, and faster onboarding for engineering teams.
             </p>
           </motion.article>
 
           <motion.article
             variants={cardReveal}
-            className="rounded-xl border border-white/12 bg-white/3 px-4 py-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-200/25 hover:shadow-[0_12px_30px_-20px_rgba(34,211,238,0.45)]"
+            className="surface-card surface-card-hover px-4 py-5"
           >
-            <h3 className="text-sm font-semibold tracking-[-0.01em] text-slate-100">Consistent responses</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-300/85">
+            <h3 className="text-sm font-semibold tracking-[-0.01em] text-foreground">Consistent responses</h3>
+            <p className="mt-2 text-sm leading-6 text-foreground-secondary">
               Uniform payload and error structures for reliable integrations.
             </p>
           </motion.article>
 
           <motion.article
             variants={cardReveal}
-            className="rounded-xl border border-white/12 bg-white/3 px-4 py-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-200/25 hover:shadow-[0_12px_30px_-20px_rgba(34,211,238,0.45)]"
+            className="surface-card surface-card-hover px-4 py-5"
           >
-            <h3 className="text-sm font-semibold tracking-[-0.01em] text-slate-100">Built to scale</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-300/85">
+            <h3 className="text-sm font-semibold tracking-[-0.01em] text-foreground">Built to scale</h3>
+            <p className="mt-2 text-sm leading-6 text-foreground-secondary">
               Designed for high volume, sustained growth, and stable operations.
             </p>
           </motion.article>

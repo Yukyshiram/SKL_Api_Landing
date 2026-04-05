@@ -18,29 +18,28 @@ const PANEL_ANIMATION_FROM = { opacity: 0.7, y: 8 };
 const PANEL_ANIMATION_TO = { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' };
 
 const classes = {
-  section: 'relative isolate overflow-hidden border-b border-white/10 bg-[#05070c] py-20 sm:py-24',
+  section: 'relative isolate overflow-hidden bg-background py-20 sm:py-24',
   wrapper: 'mx-auto w-full max-w-7xl space-y-12 px-6 sm:px-10 lg:px-16',
   grid: 'grid gap-10 lg:grid-cols-[minmax(0,1fr)_26rem] lg:gap-14',
   storyColumn: 'relative space-y-4 lg:pl-6',
   stepCardBase: 'rounded-2xl border px-5 py-6 sm:px-6',
   stepCardTransition:
     'transition-[color,background-color,border-color,opacity,transform,box-shadow] duration-500 ease-out',
-  stepCardInactive: 'border-white/10 bg-white/3 lg:translate-x-1 lg:scale-[0.985] lg:opacity-60',
+  stepCardInactive: 'border-border-subtle bg-surface lg:translate-x-1 lg:scale-[0.985] lg:opacity-60',
   stepCardActive:
-    'border-white/10 bg-white/3 lg:translate-x-0 lg:scale-100 lg:opacity-100 lg:border-cyan-300/30 lg:bg-cyan-300/8 lg:shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_26px_48px_-36px_rgba(34,211,238,0.55)]',
+    'border-border-strong bg-surface-elevated lg:translate-x-0 lg:scale-100 lg:opacity-100 lg:shadow-[var(--shadow-card-hover)]',
   stepIndexBase:
     'inline-flex h-7 min-w-7 items-center justify-center rounded-full border px-2 text-[11px] font-semibold tracking-[0.12em]',
   stepIndexTransition: 'transition-colors duration-300',
-  stepIndexInactive: 'border-white/15 text-slate-300',
-  stepIndexActive: 'border-white/15 text-slate-300 lg:border-cyan-200/40 lg:text-cyan-100',
-  stepTitle: 'text-lg font-semibold tracking-[-0.01em] text-slate-100',
-  stepSummary: 'max-w-2xl text-sm leading-7 text-slate-300/90 sm:text-base',
-  mobilePanel: 'mt-5 rounded-xl border border-white/12 bg-white/4 p-4 lg:hidden',
-  mobileMetricCard: 'rounded-lg border border-white/12 bg-white/4 px-2.5 py-2.5',
+  stepIndexInactive: 'border-border-subtle text-foreground-secondary',
+  stepIndexActive: 'border-border-strong text-foreground-secondary lg:border-primary lg:text-primary-foreground',
+  stepTitle: 'text-lg font-semibold tracking-[-0.01em] text-foreground',
+  stepSummary: 'max-w-2xl text-sm leading-7 text-foreground-secondary sm:text-base',
+  mobilePanel: 'mt-5 rounded-xl border border-border-subtle bg-surface p-4 lg:hidden',
+  mobileMetricCard: 'rounded-lg border border-border-subtle bg-surface px-2.5 py-2.5',
   desktopAside: 'hidden lg:sticky lg:top-24 lg:block lg:h-fit',
-  desktopPanel:
-    'relative overflow-hidden rounded-2xl border border-white/12 bg-[linear-gradient(180deg,rgba(15,23,42,0.75),rgba(2,6,23,0.94))] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_34px_70px_-40px_rgba(8,47,73,0.55)] sm:p-6',
-  desktopMetricCard: 'rounded-xl border border-white/12 bg-white/4 px-3 py-3',
+  desktopPanel: 'surface-panel relative overflow-hidden p-5 sm:p-6',
+  desktopMetricCard: 'rounded-xl border border-border-subtle bg-surface px-3 py-3',
 };
 
 function cx(...values: Array<string | false>): string {
@@ -54,7 +53,7 @@ const steps: CapabilityStep[] = [
     summary: 'Model each module with explicit contracts and clear ownership by team.',
     panelTitle: 'Domain Contract Map',
     panelBody:
-      'SKL API organizes capabilities into independent domains to reduce coupling and support incremental evolution.',
+      'Next SKL Api organizes capabilities into independent domains to reduce coupling and support incremental evolution.',
     metrics: [
       { label: 'Modules', value: 'Domain-based' },
       { label: 'Shared Contracts', value: 'Explicitly managed' },
@@ -204,24 +203,19 @@ export default function CapabilitiesStory() {
 
   return (
     <section id="capabilities-story" className={classes.section}>
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-x-0 top-0 h-20 bg-linear-to-b from-slate-900/20 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-linear-to-b from-transparent to-black/30" />
-      </div>
-
       <div className={classes.wrapper}>
         <SectionHeading
           eyebrow="Capabilities Story"
           title="A technical narrative built for product, platform, and operations"
-          description="SKL API combines modularity, consistency, and observability so every growth stage starts from a stable base."
+          description="Next SKL Api combines modularity, consistency, and observability so every growth stage starts from a stable base."
           align="left"
         />
 
         <div className={classes.grid}>
           <div className={classes.storyColumn}>
-            <div className="pointer-events-none absolute bottom-2 left-0 top-2 hidden w-px bg-white/12 lg:block" />
+            <div className="pointer-events-none absolute bottom-2 left-0 top-2 hidden w-px bg-border-subtle lg:block" />
             <div
-              className="pointer-events-none absolute left-0 top-2 hidden w-px bg-linear-to-b from-cyan-200/70 to-cyan-100/75 lg:block"
+              className="pointer-events-none absolute left-0 top-2 hidden w-px bg-primary lg:block"
               style={{ height: `${Math.max(10, progressPercent - 2)}%` }}
             />
 
@@ -243,8 +237,8 @@ export default function CapabilitiesStory() {
                 >
                   <span
                     className={cx(
-                      'absolute -left-[1.05rem] top-7 hidden h-2.5 w-2.5 rounded-full ring-4 ring-[#05070c] transition-all duration-300 lg:block',
-                      isActive ? 'bg-cyan-100 shadow-[0_0_0_4px_rgba(34,211,238,0.16)]' : 'bg-white/25'
+                      'absolute -left-[1.05rem] top-7 hidden h-2.5 w-2.5 rounded-full ring-4 ring-background transition-all duration-300 lg:block',
+                      isActive ? 'bg-primary' : 'bg-border-subtle'
                     )}
                     aria-hidden="true"
                   />
@@ -265,17 +259,17 @@ export default function CapabilitiesStory() {
                   <p className={classes.stepSummary}>{step.summary}</p>
 
                   <div className={classes.mobilePanel}>
-                    <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-cyan-100/85">
+                    <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-primary-foreground">
                       Step {step.id}
                     </p>
-                    <h4 className="text-base font-semibold tracking-[-0.01em] text-slate-100">{step.panelTitle}</h4>
-                    <p className="mt-3 text-sm leading-7 text-slate-300/90">{step.panelBody}</p>
+                    <h4 className="text-base font-semibold tracking-[-0.01em] text-foreground">{step.panelTitle}</h4>
+                    <p className="mt-3 text-sm leading-7 text-foreground-secondary">{step.panelBody}</p>
 
                     <div className="mt-4 grid grid-cols-3 gap-2">
                       {step.metrics.map((metric) => (
                         <div key={metric.label} className={classes.mobileMetricCard}>
-                          <p className="text-[10px] uppercase tracking-[0.12em] text-slate-400">{metric.label}</p>
-                          <p className="mt-1 text-xs font-semibold text-slate-100">{metric.value}</p>
+                          <p className="text-[10px] uppercase tracking-[0.12em] text-foreground-muted">{metric.label}</p>
+                          <p className="mt-1 text-xs font-semibold text-foreground">{metric.value}</p>
                         </div>
                       ))}
                     </div>
@@ -288,19 +282,19 @@ export default function CapabilitiesStory() {
           <aside className={classes.desktopAside}>
             <div ref={panelRef} className={classes.desktopPanel}>
               <div className="pointer-events-none absolute inset-0">
-                <div data-panel-glow className="absolute -top-14 -right-16 h-44 w-44 rounded-full bg-cyan-300/18 blur-3xl" />
-                <div className="absolute inset-x-0 top-0 h-24 bg-linear-to-b from-white/6 to-transparent" />
+                <div data-panel-glow className="absolute -top-14 -right-16 h-44 w-44 rounded-full glow-primary" />
+                <div className="absolute inset-x-0 top-0 h-24 panel-sheen" />
               </div>
 
-              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-cyan-100/85">
+              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-primary-foreground">
                 Active Step {activeStep.id}
               </p>
 
               <div className="mb-4 space-y-2.5">
-                <div className="h-1 overflow-hidden rounded-full bg-white/10">
+                <div className="h-1 overflow-hidden rounded-full bg-border-subtle">
                   <div
                     data-progress-fill
-                    className="h-full rounded-full bg-linear-to-r from-cyan-300/80 to-cyan-100/80"
+                    className="h-full rounded-full bg-primary"
                     style={{ width: `${progressPercent}%` }}
                   />
                 </div>
@@ -310,7 +304,7 @@ export default function CapabilitiesStory() {
                       key={`progress-${step.id}`}
                       className={cx(
                         'h-1.5 w-1.5 rounded-full transition-colors duration-300',
-                        index <= activeStepIndex ? 'bg-cyan-100/90' : 'bg-white/18'
+                        index <= activeStepIndex ? 'bg-primary' : 'bg-border-subtle'
                       )}
                       aria-hidden="true"
                     />
@@ -318,18 +312,18 @@ export default function CapabilitiesStory() {
                 </div>
               </div>
 
-              <h4 data-panel-title className="text-xl font-semibold tracking-[-0.02em] text-slate-100">
+              <h4 data-panel-title className="text-xl font-semibold tracking-[-0.02em] text-foreground">
                 {activeStep.panelTitle}
               </h4>
-              <p data-panel-body className="mt-4 text-sm leading-7 text-slate-300/90 sm:text-base">
+              <p data-panel-body className="mt-4 text-sm leading-7 text-foreground-secondary sm:text-base">
                 {activeStep.panelBody}
               </p>
 
               <div className="mt-6 grid grid-cols-3 gap-3">
                 {activeStep.metrics.map((metric) => (
                   <div key={metric.label} data-panel-metric className={classes.desktopMetricCard}>
-                    <p className="text-[10px] uppercase tracking-[0.14em] text-slate-400">{metric.label}</p>
-                    <p className="mt-1 text-sm font-semibold text-slate-100 sm:text-base">{metric.value}</p>
+                    <p className="text-[10px] uppercase tracking-[0.14em] text-foreground-muted">{metric.label}</p>
+                    <p className="mt-1 text-sm font-semibold text-foreground sm:text-base">{metric.value}</p>
                   </div>
                 ))}
               </div>

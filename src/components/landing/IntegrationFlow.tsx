@@ -121,40 +121,35 @@ export default function IntegrationFlow() {
   return (
     <section
       ref={sectionRef}
-      id="integration-flow"
-      className="relative isolate overflow-hidden border-b border-white/10 bg-[#05070c] py-20 sm:py-24 lg:py-24"
+      id="flow"
+      className="relative isolate overflow-hidden section-from-hero py-20 sm:py-24 lg:py-24"
     >
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-x-0 top-0 h-20 bg-linear-to-b from-slate-900/20 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-linear-to-b from-transparent to-black/30" />
-      </div>
-
       <div className="mx-auto w-full max-w-7xl space-y-12 px-6 sm:px-10 lg:px-16">
         <SectionHeading
           eyebrow="Integration Flow"
-          title="Integrate SKL API through a clear, technical, and reliable flow"
+          title="Integrate Next SKL Api through a clear, technical, and reliable flow"
           description="From initial access to production scale, each step keeps contracts predictable and security by default."
           align="left"
         />
 
         <div className="relative">
-          <div className="pointer-events-none absolute left-4 top-8 h-[calc(100%-4rem)] w-px bg-white/12 sm:left-5 lg:hidden" />
+          <div className="pointer-events-none absolute left-4 top-8 h-[calc(100%-4rem)] w-px bg-border-subtle sm:left-5 lg:hidden" />
 
           <div className="grid gap-5 lg:hidden">
             {integrationSteps.map((step) => (
               <article
                 key={`mobile-${step.id}`}
-                className="relative rounded-2xl border border-white/12 bg-[linear-gradient(180deg,rgba(148,163,184,0.05),rgba(15,23,42,0.22))] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+                className="surface-card p-5 shadow-none"
               >
                 <div className="mb-4 flex items-center gap-3">
-                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-cyan-200/35 bg-cyan-300/10 text-[11px] font-semibold tracking-[0.12em] text-cyan-100">
+                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-primary bg-primary text-[11px] font-semibold tracking-[0.12em] text-primary-foreground">
                     {step.id}
                   </span>
-                  <h3 className="text-base font-semibold tracking-[-0.01em] text-slate-100">{step.title}</h3>
+                  <h3 className="text-base font-semibold tracking-[-0.01em] text-foreground">{step.title}</h3>
                 </div>
 
-                <p className="text-sm leading-7 text-slate-300/90">{step.description}</p>
-                <p className="mt-3 text-sm leading-7 text-slate-400">{step.detail}</p>
+                <p className="text-sm leading-7 text-foreground-secondary">{step.description}</p>
+                <p className="mt-3 text-sm leading-7 text-foreground-muted">{step.detail}</p>
               </article>
             ))}
           </div>
@@ -162,10 +157,10 @@ export default function IntegrationFlow() {
           <div ref={desktopSceneRef} className="hidden lg:block">
             <div className="flex min-h-[calc(100vh-8rem)] items-center py-8">
               <div className="mx-auto w-full max-w-4xl space-y-7">
-                <div className="rounded-2xl border border-white/10 bg-white/4 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_18px_45px_-35px_rgba(8,47,73,0.55)] backdrop-blur-[2px]">
-                  <div className="mb-3 h-1 overflow-hidden rounded-full bg-white/10">
+                <div className="surface-card p-4 shadow-none">
+                  <div className="mb-3 h-1 overflow-hidden rounded-full bg-border-subtle">
                     <div
-                      className="h-full rounded-full bg-linear-to-r from-cyan-200/75 via-cyan-100/85 to-sky-100/90 transition-[width] duration-200"
+                      className="h-full rounded-full bg-primary transition-[width] duration-200"
                       style={{ width: `${progressPercent}%` }}
                     />
                   </div>
@@ -179,15 +174,15 @@ export default function IntegrationFlow() {
                           key={`progress-${step.id}`}
                           className={cx(
                             'flex items-center gap-3 rounded-xl border px-3 py-2.5 transition-colors duration-300',
-                            isComplete ? 'border-cyan-200/30 bg-cyan-300/10' : 'border-white/10 bg-white/3'
+                            isComplete ? 'border-primary bg-surface-elevated' : 'border-border-subtle bg-surface'
                           )}
                         >
                           <span
                             className={cx(
                               'inline-flex h-7 min-w-7 items-center justify-center rounded-full border px-1.5 text-[10px] font-semibold tracking-[0.14em] transition-colors duration-300',
                               isComplete
-                                ? 'border-cyan-200/40 bg-cyan-300/12 text-cyan-100'
-                                : 'border-white/15 bg-white/4 text-slate-400'
+                                ? 'border-primary bg-primary text-primary-foreground'
+                                : 'border-border-subtle bg-surface text-foreground-muted'
                             )}
                           >
                             {step.id}
@@ -195,7 +190,7 @@ export default function IntegrationFlow() {
                           <span
                             className={cx(
                               'text-xs font-medium tracking-[0.04em] transition-colors duration-300',
-                              isComplete ? 'text-slate-100' : 'text-slate-400'
+                              isComplete ? 'text-foreground' : 'text-foreground-muted'
                             )}
                           >
                             {step.title}
@@ -206,8 +201,8 @@ export default function IntegrationFlow() {
                   </div>
                 </div>
 
-                <div className="relative flex min-h-128 items-center justify-center overflow-hidden rounded-4xl border border-white/12 bg-[linear-gradient(180deg,rgba(15,23,42,0.42),rgba(2,6,23,0.78))] px-5 py-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_34px_80px_-56px_rgba(8,47,73,0.68)] sm:px-8 sm:py-12 lg:min-h-144">
-                  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.08),transparent_52%)]" />
+                <div className="surface-panel relative flex min-h-128 items-center justify-center overflow-hidden rounded-3xl px-5 py-10 sm:px-8 sm:py-12 lg:min-h-144">
+                  <div className="pointer-events-none absolute inset-0 panel-sheen" />
 
                   <AnimatePresence mode="wait" initial={false} custom={transitionDirection}>
                     <motion.article
@@ -217,43 +212,41 @@ export default function IntegrationFlow() {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: transitionDirection > 0 ? -12 : 12, scale: 0.985 }}
                       transition={{ duration: 0.36, ease: 'easeOut' }}
-                      className="relative w-full max-w-3xl rounded-[1.75rem] border border-cyan-300/16 bg-[linear-gradient(180deg,rgba(34,211,238,0.08),rgba(15,23,42,0.34))] p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_30px_70px_-46px_rgba(34,211,238,0.34)] sm:p-8 lg:p-10"
+                      className="surface-card border border-primary bg-surface-elevated relative w-full max-w-3xl p-7 sm:p-8 lg:p-10"
                     >
-                      <div className="pointer-events-none absolute inset-0 rounded-[1.75rem] bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.08),transparent_45%)]" />
-
                       <div className="relative flex items-center gap-3">
-                        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-cyan-100/45 bg-cyan-300/15 text-[11px] font-semibold tracking-[0.14em] text-cyan-50 shadow-[0_0_0_4px_rgba(34,211,238,0.08)]">
+                        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-primary bg-primary text-[11px] font-semibold tracking-[0.14em] text-primary-foreground">
                           {activeStep.id}
                         </span>
                         <div>
-                          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-100/85">Step {activeStep.id}</p>
-                          <h3 className="mt-1 text-2xl font-semibold tracking-[-0.03em] text-slate-50 sm:text-[2rem]">
+                          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground">Step {activeStep.id}</p>
+                          <h3 className="mt-1 text-2xl font-semibold tracking-[-0.03em] text-foreground sm:text-[2rem]">
                             {activeStep.title}
                           </h3>
                         </div>
                       </div>
 
                       <div className="relative mt-6 max-w-2xl space-y-4">
-                        <p className="text-base leading-8 text-slate-300/92 sm:text-[1.05rem] sm:leading-8">
+                        <p className="text-base leading-8 text-foreground-secondary sm:text-[1.05rem] sm:leading-8">
                           {activeStep.description}
                         </p>
-                        <p className="text-sm leading-7 text-slate-400 sm:text-base sm:leading-8">
+                        <p className="text-sm leading-7 text-foreground-muted sm:text-base sm:leading-8">
                           {activeStep.detail}
                         </p>
                       </div>
 
                       <div className="relative mt-8 grid gap-3 sm:grid-cols-3">
-                        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-                          <p className="text-[10px] uppercase tracking-[0.14em] text-slate-400">Focus</p>
-                          <p className="mt-1 text-sm font-semibold text-slate-100">{activeStep.id} / 04</p>
+                        <div className="surface-card p-4 shadow-none">
+                          <p className="text-[10px] uppercase tracking-[0.14em] text-foreground-muted">Focus</p>
+                          <p className="mt-1 text-sm font-semibold text-foreground">{activeStep.id} / 04</p>
                         </div>
-                        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-                          <p className="text-[10px] uppercase tracking-[0.14em] text-slate-400">Mode</p>
-                          <p className="mt-1 text-sm font-semibold text-slate-100">Pinned story</p>
+                        <div className="surface-card p-4 shadow-none">
+                          <p className="text-[10px] uppercase tracking-[0.14em] text-foreground-muted">Mode</p>
+                          <p className="mt-1 text-sm font-semibold text-foreground">Pinned story</p>
                         </div>
-                        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-                          <p className="text-[10px] uppercase tracking-[0.14em] text-slate-400">Flow</p>
-                          <p className="mt-1 text-sm font-semibold text-slate-100">Scroll-driven</p>
+                        <div className="surface-card p-4 shadow-none">
+                          <p className="text-[10px] uppercase tracking-[0.14em] text-foreground-muted">Flow</p>
+                          <p className="mt-1 text-sm font-semibold text-foreground">Scroll-driven</p>
                         </div>
                       </div>
                     </motion.article>
